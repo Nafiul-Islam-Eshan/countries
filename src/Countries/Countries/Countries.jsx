@@ -1,7 +1,6 @@
-import React, { use } from 'react';
-import Country from '../Country/Country';
-
-
+import React, { use } from "react";
+import Country from "../Country/Country";
+import "./countries.css";
 
 // "name": {
 // "common": "Jamaica",
@@ -53,20 +52,20 @@ import Country from '../Country/Country';
 // "alt": "The flag of Jamaica is divided by a gold diagonal cross into four alternating triangular areas of green at the top and bottom, and black on the hoist and fly sides"
 // }
 
+const Countries = ({ loadCountries }) => {
+  const countriesData = use(loadCountries);
+  const countries = countriesData.countries;
 
-
-const Countries = ({loadCountries}) => {
-    const countriesData = use(loadCountries)
-    const countries = countriesData.countries
-
-    return (
-        <div>
-            <h2>All Countries : {countries.length} </h2>
-            {
-                countries.map(country => <Country country={country}></Country>)
-            }
-        </div>
-    );
+  return (
+    <div>
+      <h1>All Countries : {countries.length} </h1>
+      <div className="countries">
+        {countries.map((country) => (
+          <Country key={country.name.common} country={country}></Country>
+        ))}
+      </div>
+    </div>
+  );
 };
 
-export default Countries    
+export default Countries;
