@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import Country from "../Country/Country";
 import "./countries.css";
 
@@ -53,16 +53,48 @@ import "./countries.css";
 // }
 
 const Countries = ({ loadCountries }) => {
+  const [visitedCountries, setVisitedCountries] = useState([]);
+
+  const handleVisitedCountries = (country) => {
+
+    const newCountries = [...visitedCountries, country]
+    
+    console.log("Event triggered for", newCountries);
+    
+    setVisitedCountries(newCountries)
+
+  };
+
   const countriesData = use(loadCountries);
+
   const countries = countriesData.countries;
 
   return (
+
     <div>
+      
       <h1>All Countries : {countries.length} </h1>
+
+      <h2>Visited Country: {visitedCountries.length} </h2>
+
+      <ol>
+        {
+          visitedCountries.map(country => <li>{country.name.common}</li>)
+        }
+      </ol>
+
       <div className="countries">
+
         {countries.map((country) => (
-          <Country key={country.name.common} country={country}></Country>
+
+          <Country
+            key={country.name.common}
+            country={country}
+            handleVisitedCountries={handleVisitedCountries}
+          ></Country>
+
         ))}
+
       </div>
     </div>
   );

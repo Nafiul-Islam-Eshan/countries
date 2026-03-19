@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './country.css'
 
-const Country = ({country}) => {
+const Country = ({country, handleVisitedCountries}) => {
+
 
     const [visited, setVisited] = useState(false)
 
     const handleVisited = () => {
 
-        //1st way 
+        // basic system 
         // if(visited){
         //     setVisited(false)
         // }
@@ -16,20 +17,24 @@ const Country = ({country}) => {
         // }
 
 
-        // 2nd way
+        // 2nd system
         // visited ? setVisited(false) : setVisited(true)
 
 
-        setVisited(visited? false : true);
+        // 3rd system
+        // setVisited(visited? false : true);
 
 
-        // 3rd way
-        // setVisited(!visited)
+        // 4th system
+        setVisited(!visited)
+
+        handleVisitedCountries(country)
     }
 
     // console.log(Object.values(country.languages.languages).join(", "));
+
     return (
-        <div className='country'>
+        <div className={`country ${visited && "country-visited "}`}>
             <img src={country.flags.flags.png} alt={country.flags.flags.alt} />
             <h2>{country.name.common}</h2>
             <div className="">

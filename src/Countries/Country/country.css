@@ -6,6 +6,11 @@
   text-align: center;
 }
 
+.country-visited {
+  background-color: rgb(62, 76, 76);
+  color: black;
+}
+
 @media screen and (max-width: 768px) {
   .country {
     margin: 3px 0;
